@@ -35,7 +35,9 @@ public class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
         T found = findById(id);
-        session.delete(found);
+        if (found!=null){
+            session.delete(found);
+        }
     }
 
     @Override

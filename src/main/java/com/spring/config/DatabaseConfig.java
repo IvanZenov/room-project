@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan (basePackages = {"com.spring.database.dao", "com.spring.service"})
+@ComponentScan (basePackages = {"com.spring.database.dao" , "com.spring.service"})
 @PropertySource("classpath:database.properties")
 @EnableTransactionManagement
 public class DatabaseConfig {
@@ -62,7 +62,7 @@ public class DatabaseConfig {
         sessionFactoryBean.setHibernateProperties(hibernateProperties());
         return sessionFactoryBean;
     }
-
+    
     public Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", hibernateDialect);

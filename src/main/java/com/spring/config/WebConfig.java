@@ -1,4 +1,4 @@
-package com.spring.web.config;
+package com.spring.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +15,7 @@ public class WebConfig {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/");
+        viewResolver.setPrefix("/WEB-INF/pages/");
         viewResolver.setSuffix(".jsp");
         //Для того, что использовать бины как атрибуты внутри jsp, т.к. нет req/session scope
         viewResolver.setExposeContextBeansAsAttributes(true);

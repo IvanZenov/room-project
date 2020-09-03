@@ -5,9 +5,11 @@ import com.spring.database.dao.interfaces.UserDao;
 import com.spring.database.domain.User;
 import com.spring.database.enums.Role;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
     @Override
     public List<User> getByRole(Role role) {

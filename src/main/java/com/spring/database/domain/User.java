@@ -43,4 +43,14 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private Set<Reservation> reservations = new HashSet<>();
+
+    public User(String firstName, String secondName, String email, String password, String phoneNumber, Role role, double money) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.money = money;
+    }
 }

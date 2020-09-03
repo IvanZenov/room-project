@@ -9,8 +9,6 @@ import javax.persistence.Embeddable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-
 @Embeddable
 public class Address {
     @Column (name = "city", nullable = false)
@@ -21,4 +19,11 @@ public class Address {
 
     @Column (name = "streetNumber", nullable = false)
     private String numberOfStreet;
+
+    @Override
+    public String toString() {
+        return city  +
+                " " + street  +
+                " " + numberOfStreet;
+    }
 }

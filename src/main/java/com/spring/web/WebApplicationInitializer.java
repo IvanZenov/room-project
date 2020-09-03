@@ -1,12 +1,14 @@
 package com.spring.web;
 
-import com.spring.web.config.WebConfig;
+import com.spring.config.DatabaseConfig;
+import com.spring.config.SecureConfig;
+import com.spring.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[0];
+        return new Class[] {DatabaseConfig.class, SecureConfig.class};
     }
 
     @Override

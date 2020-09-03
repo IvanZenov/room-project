@@ -1,6 +1,5 @@
 package com.spring.service.impl;
 
-
 import com.spring.database.dao.interfaces.RoomDao;
 import com.spring.database.domain.Room;
 import com.spring.service.interfaces.RoomService;
@@ -35,4 +34,21 @@ public class RoomServiceImpl implements RoomService {
     public Room findById(Long id) {
         return roomDao.findById(id);
     }
+
+    @Override
+    public void delete(String stringId) {
+        Long id = Long.valueOf(stringId);
+        roomDao.delete(id);
+    }
+
+    @Override
+    public List<Room> findWithParameter(String city) {
+        if (city==null){
+            return roomDao.findAll();
+        }
+        else {
+            return roomDao.findRoomWithParameter(city);
+        }
+    }
+
 }

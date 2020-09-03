@@ -5,9 +5,11 @@ import com.spring.database.dao.interfaces.ReservationDao;
 import com.spring.database.domain.Reservation;
 import com.spring.database.enums.ReservationStatus;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class ReservationDaoImp extends BaseDaoImpl<Reservation> implements ReservationDao {
     @Override
     public List<Reservation> getByReservationStatus(ReservationStatus reservationStatus) {
