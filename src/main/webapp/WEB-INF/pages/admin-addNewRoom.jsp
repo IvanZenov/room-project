@@ -2,11 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
-<tags:master pageTitle="Rooms">
+<tags:master pageTitle="Add new room">
     <div class="row justify-content-md-center">
         <div class="card" style="border: 1px;">
 
-            <form method="post" action="${pageContext.request.contextPath}/rooms/newRoom">
+            <form method="post" action="${pageContext.request.contextPath}/admin/rooms/addNewRoom">
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="city">City</label>
@@ -30,7 +30,8 @@
 
                 <div class="mb-3">
                     <label for="description">Textarea</label>
-                    <textarea class="form-control" name="description" id="description" placeholder="Description"></textarea>
+                    <textarea class="form-control" name="description" id="description"
+                              placeholder="Description"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="name">Name</label>
@@ -50,7 +51,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="pricePerNight">Price (per night)</label>
-                        <input type="number" step="0.01" class="form-control" name="pricePerNight" id="pricePerNight" required>
+                        <input type="number" step="0.01" class="form-control" name="pricePerNight" id="pricePerNight"
+                               required>
                         <div class="invalid-feedback">
                             Please provide a valid price.
                         </div>

@@ -6,28 +6,18 @@
     <title>All Rooms Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+
+    <style type="text/css">
+        .custom-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+    </style>
 </head>
-
-
 <body>
-
-<header  style="margin: 30px;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/rooms">UNION</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/rooms">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="#">Reservations</a>
-                <a class="nav-link" href="#">Account</a>
-            </div>
-        </div>
-    </nav>
-</header>
 
 <main>
     <jsp:doBody/>

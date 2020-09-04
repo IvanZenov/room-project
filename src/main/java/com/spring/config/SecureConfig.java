@@ -1,5 +1,6 @@
 package com.spring.config;
 
+import com.spring.database.enums.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,19 +36,25 @@ public class SecureConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests()
-                    .anyRequest()
+                    .authorizeRequests()
+                    .antMatchers("/registration")
                         .permitAll()
-                .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .defaultSuccessUrl("/rooms")
-                .and()
-                    .logout()
-                    .permitAll()
-                .and()
-                    .userDetailsService(userDetailsService);
+                    .antMatchers("/admin/**")
+                        .hasRole(Role.ADMIN.name())
+                    .antMatchers("/**")
+                        .authenticated()
+                    .and()
+                        .formLogin()
+                        .loginPage("/login")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .permitAll()
+                        .defaultSuccessUrl("/rooms")
+                    .and()
+                        .logout()
+                        .logoutUrl("/logout")
+                    .and()
+                        .userDetailsService(userDetailsService);
     }
 
 }

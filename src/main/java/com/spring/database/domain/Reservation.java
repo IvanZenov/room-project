@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,10 +23,10 @@ public class Reservation extends BaseEntity {
     private Payment payment;
 
     @Column(name = "arrival")
-    private LocalDateTime arrivalDate;
+    private Date arrivalDate;
 
     @Column (name = "checkout")
-    private LocalDateTime checkoutDate;
+    private Date checkoutDate;
 
     @Column (name = "status")
     @Enumerated(EnumType.STRING)

@@ -22,13 +22,8 @@ public class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
 
     @Override
     public void save(T entity) {
-        //Close and manage session/transaction do TransactionManager in Spring
         Session session = sessionFactory.getCurrentSession();
-        //Transaction transaction = session.beginTransaction();
         session.save(entity);
-        //transaction.commit();
-        //session.close();
-
     }
 
     @Override
@@ -55,7 +50,7 @@ public class BaseDaoImpl<T extends BaseEntity> implements BaseDao<T> {
 
     @Override
     public T findById(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.getCurrentSession();
         return session.get(entityClass, id);
     }
 

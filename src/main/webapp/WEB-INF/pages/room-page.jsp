@@ -4,6 +4,7 @@
 
 
 <tags:master pageTitle="Rooms">
+    <jsp:include page="header.jsp"/>
 
     <div class="container">
     <div class="row">
@@ -14,6 +15,9 @@
                 <img src="${room.imageUrl}" class="card-img-top" alt="${room.name}">
                 <div class="card-body">
                     <h5 class="card-title">${room.name}</h5>
+
+                    <p class="card-text"><small class="text-muted">${room.address}</small></p>
+
                     <p class="card-text">${room.description}</p>
                     <p class="card-text">
                         Places: ${room.description}
@@ -23,13 +27,12 @@
                     </p>
                     <p class="card-text">${room.description}</p>
 
-                    <p class="card-text"><small class="text-muted">${room.address}</small></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <form method="post" action="${pageContext.request.contextPath}/reserve/${room.id}">
+    <form method="post" action="${pageContext.request.contextPath}/rooms/${room.id}">
 
         <div class="col">
             <!--Left column -->
@@ -41,6 +44,9 @@
                         <label>
                             <p>Checkout date:</p>
                             <input name="checkoutDate" type="date">
+                            <div class="invalid-feedback">
+                                Please provide a valid date.
+                            </div>
                         </label>
                     </li>
 
@@ -48,6 +54,9 @@
                         <label>
                             <p>Arrival date:</p>
                             <input name="arrivalDate" type="date">
+                            <div class="invalid-feedback">
+                                Please provide a valid date.
+                            </div>
                         </label>
                     </li>
                 </ul>

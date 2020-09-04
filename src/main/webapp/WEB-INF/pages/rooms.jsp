@@ -3,6 +3,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <tags:master pageTitle="Rooms">
+    <jsp:include page="header.jsp"/>
 
 <div class="container">
     <div class="row">
@@ -62,13 +63,13 @@
                         <div class="col-5">
                             <h4 class="card-title">${room.name}</h4>
                             <h5 class="card-text"><small class="text-muted">${room.address}</small></h5>
-                            <p class="max-line">${room.description}</p>
+                            <p class="custom-text">${room.description}</p>
                         </div>
                         <div class="col">
                             <p>${room.pricePerNight} $/per night</p>
                             <p>Places: ${room.places}</p>
                             <a href="${pageContext.request.contextPath}/rooms/${room.id}">
-                                <button type="button" class="btn btn-primary btn-sm">More</button>
+                                <button type="button" class="btn btn btn-outline-primary btn-sm">More</button>
                             </a>
                         </div>
                     </div>

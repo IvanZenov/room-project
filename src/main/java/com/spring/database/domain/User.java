@@ -16,30 +16,31 @@ import java.util.Set;
 @AllArgsConstructor
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column (name = "second_name")
+    @Column(name = "second_name")
     private String secondName;
 
-    @Column (name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column (name = "password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column (name = "phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column (name = "status")
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Column (name = "money")
+    @Column(name = "money")
     private double money;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private Set<Reservation> reservations = new HashSet<>();
