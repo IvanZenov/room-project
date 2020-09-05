@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <header style="margin-bottom: 30px;">
@@ -15,12 +14,17 @@
                             class="sr-only">(current)</span></a>
                     <a class="nav-link" href="#">Reservations</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/profile">Account</a>
-                    <sec:authorize access="hasRole('ADMIN')">
+                    <sec:authorize access="hasAuthority('ADMIN')">
                         <a class="nav-link" href="${pageContext.request.contextPath}/admin/rooms">Room Manage</a>
                     </sec:authorize>
-                    <sec:authorize access="hasRole('ADMIN')">
+                    <sec:authorize access="hasAuthority('ADMIN')">
                         <a class="nav-link" href="#">Reservations Manage</a>
                     </sec:authorize>
+                    <div class="float-right">
+                        <a href="${pageContext.request.contextPath}/logout ">
+                            <button type="button" class="btn btn btn-outline-primary btn-sm">Logout</button>
+                        </a>
+                    </div>
 
                 </div>
             </div>

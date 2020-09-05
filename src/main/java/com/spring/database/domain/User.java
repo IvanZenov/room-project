@@ -42,7 +42,7 @@ public class User extends BaseEntity {
     private double money;
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<Reservation> reservations = new HashSet<>();
 
     public User(String firstName, String secondName, String email, String password, String phoneNumber, Role role, double money) {

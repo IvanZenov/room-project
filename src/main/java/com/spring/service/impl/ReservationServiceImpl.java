@@ -7,12 +7,16 @@ import com.spring.database.domain.User;
 import com.spring.database.enums.ReservationStatus;
 import com.spring.service.interfaces.ReservationService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Set;
 
 @Service
+@Transactional
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationDao reservationDao;
@@ -41,6 +45,11 @@ public class ReservationServiceImpl implements ReservationService {
             e.printStackTrace();
         }
         reservationDao.saveReservation(room,user,arrival,checkout);
+    }
+
+    @Override
+    public List<Reservation> findAll() {
+        return reservationDao.findAll();
     }
 
     private Date parseDate(String date) throws ParseException {

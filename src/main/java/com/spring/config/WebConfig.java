@@ -17,7 +17,6 @@ public class WebConfig {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/pages/");
         viewResolver.setSuffix(".jsp");
-        //Для того, что использовать бины как атрибуты внутри jsp, т.к. нет req/session scope
         viewResolver.setExposeContextBeansAsAttributes(true);
         return viewResolver;
     }

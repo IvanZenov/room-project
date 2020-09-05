@@ -5,8 +5,8 @@ import com.spring.database.domain.Room;
 import com.spring.service.interfaces.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service

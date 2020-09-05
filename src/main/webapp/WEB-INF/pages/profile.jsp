@@ -8,7 +8,6 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Room address</th>
                 <th scope="col">Room name</th>
                 <th scope="col">Arrival date</th>
@@ -19,13 +18,12 @@
             <tbody>
             <c:forEach var="reservation" items="${reservations}">
             <tr>
-                    <th scope="row">${reservation.id}</th>
-                    <td>${reservation.id}</td>
-                    <td>${reservation.id}</td>
+                    <td>${reservation.room.address}</td>
+                    <td>${reservation.room.name}</td>
                     <td>${reservation.arrivalDate}</td>
                     <td>${reservation.checkoutDate}</td>
                     <td>${reservation.status}</td>
-                </tr>
+            </tr>
             </c:forEach>
             </tbody>
         </table>
