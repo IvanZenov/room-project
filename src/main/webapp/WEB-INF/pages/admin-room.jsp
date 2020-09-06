@@ -3,6 +3,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <tags:master pageTitle="Room Editor">
+    <jsp:include page="header.jsp"/>
     <div class="container">
         <div class="card text-center">
             <div class="card-body">
@@ -33,11 +34,18 @@
                     <td>${room.address.city}</td>
                     <td>${room.address.street}</td>
                     <td>${room.address.numberOfStreet}</td>
-                    <td>${room.description}</td>
+                    <td style="max-lines: 4;">${room.description}</td>
                     <td>${room.places}</td>
                     <td>${room.pricePerNight}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/rooms/delete?id=${room.id}">Delete</a>
+                        <a href="${pageContext.request.contextPath}/rooms/delete?id=${room.id}">
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/rooms/edit?id=${room.id}">
+                            <button type="button" class="btn btn-outline-warning">Edit</button>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>

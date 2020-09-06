@@ -3,6 +3,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <tags:master pageTitle="Reservations Manage">
+    <jsp:include page="header.jsp"/>
     <div class="container">
         <form method="post" action="${pageContext.request.contextPath}/admin/reservations">
             <table class="table">
@@ -28,12 +29,21 @@
                         <td>${reservation.room.address}</td>
                         <td>${reservation.arrivalDate}</td>
                         <td>${reservation.checkoutDate}</td>
+
+                        <input type="hidden" name="reservationId" value="${reservation.id}">
                         <td>
-                            <select name="status" class="form-control">
-                                <option value="NOT_CONSIDERED">Not considered</option>
-                                <option value="CONFIRMED">Confirmed</option>
-                                <option value="CANCELED">Canceled</option>
-                            </select>
+                            <c:choose>
+                                <c:when test="${reservation.status.name()=='NOT_CONSIDERED'}">
+                                    <select name="status" class="form-control">
+                                        <option value="NOT_CONSIDERED">Not considered</option>
+                                        <option value="CONFIRMED">Confirmed</option>
+                                        <option value="CANCELED">Canceled</option>
+                                    </select>
+                                </c:when>
+                                <c:otherwise>
+                                    ${reservation.status}
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                     </tr>
                 </c:forEach>

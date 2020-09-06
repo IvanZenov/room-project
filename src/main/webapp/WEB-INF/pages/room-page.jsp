@@ -42,8 +42,8 @@
 
                     <li class="list-group-item">
                         <label>
-                            <p>Checkout date:</p>
-                            <input name="checkoutDate" type="date">
+                            <p>Check In:</p>
+                            <input name="arrivalDate" type="date">
                             <div class="invalid-feedback">
                                 Please provide a valid date.
                             </div>
@@ -52,13 +52,15 @@
 
                     <li class="list-group-item">
                         <label>
-                            <p>Arrival date:</p>
-                            <input name="arrivalDate" type="date">
+                            <p>Check Out:</p>
+                            <input name="checkoutDate" type="date">
                             <div class="invalid-feedback">
                                 Please provide a valid date.
                             </div>
                         </label>
                     </li>
+
+
                 </ul>
             </div>
             <button type="submit" class="btn btn-primary btn-bg">Reserve</button>

@@ -12,13 +12,12 @@
                 <div class="navbar-nav">
                     <a class="nav-link active" href="${pageContext.request.contextPath}/rooms">Home <span
                             class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="#">Reservations</a>
                     <a class="nav-link" href="${pageContext.request.contextPath}/profile">Account</a>
                     <sec:authorize access="hasAuthority('ADMIN')">
                         <a class="nav-link" href="${pageContext.request.contextPath}/admin/rooms">Room Manage</a>
                     </sec:authorize>
                     <sec:authorize access="hasAuthority('ADMIN')">
-                        <a class="nav-link" href="#">Reservations Manage</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/admin/reservations">Reservations Manage</a>
                     </sec:authorize>
                     <div class="float-right">
                         <a href="${pageContext.request.contextPath}/logout ">

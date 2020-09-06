@@ -13,4 +13,8 @@ public interface ReservationService {
 
     List<Reservation> findAll();
 
+    void update(Reservation reservation);
+
+    Reservation findById(Long id);
+
 }

@@ -13,7 +13,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -35,16 +35,13 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public void createReservation(Room room, User user, String arrivalDate, String checkoutDate) {
+        List<Reservation> reservations = room.getReservations();
+        final Date arrival = parseDate(arrivalDate);
+        final Date checkout = parseDate(checkoutDate);
 
-        Date arrival = null;
-        Date checkout = null;
-        try {
-            arrival = parseDate(arrivalDate);
-            checkout = parseDate(checkoutDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (checkAccessToReserveRoom(reservations, arrival, checkout)) {
+            reservationDao.saveReservation(room,user,arrival,checkout);
         }
-        reservationDao.saveReservation(room,user,arrival,checkout);
     }
 
     @Override
@@ -52,8 +49,37 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationDao.findAll();
     }
 
-    private Date parseDate(String date) throws ParseException {
-        java.util.Date parse = formatter.parse(date);
+    @Override
+    public void update(Reservation reservation) {
+        reservationDao.update(reservation);
+    }
+
+    @Override
+    public Reservation findById(Long id) {
+        return reservationDao.findById(id);
+    }
+
+    private boolean checkAccessToReserveRoom(List<Reservation> reservations, Date arrival, Date checkout) {
+        List<Reservation> reservationList = reservations
+                .stream()
+                .filter(reservation -> (isWithinRange(reservation.getArrivalDate(), arrival, checkout)
+                        || isWithinRange(reservation.getCheckoutDate(), arrival, checkout)))
+                .collect(Collectors.toList());
+
+        return reservationList.isEmpty();
+    }
+
+    boolean isWithinRange(Date testDate, Date startDate, Date endDate) {
+        return testDate.after(startDate) && testDate.before(endDate);
+    }
+
+    private Date parseDate(String date){
+        java.util.Date parse = null;
+        try {
+            parse = formatter.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return new java.sql.Date(parse.getTime());
     }
 }

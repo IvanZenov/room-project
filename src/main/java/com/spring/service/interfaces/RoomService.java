@@ -15,4 +15,6 @@ public interface RoomService {
     void delete(String id);
 
     List<Room> findWithParameter(String city);
+
+    void update(Room room);
 }

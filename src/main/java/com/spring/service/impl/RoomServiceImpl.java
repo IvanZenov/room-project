@@ -2,6 +2,7 @@ package com.spring.service.impl;
 
 import com.spring.database.dao.interfaces.RoomDao;
 import com.spring.database.domain.Room;
+import com.spring.database.exception.RoomNotFoundException;
 import com.spring.service.interfaces.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Room findById(Long id) {
+    public Room findById(Long id) throws RoomNotFoundException {
         return roomDao.findById(id);
     }
 
@@ -49,6 +50,11 @@ public class RoomServiceImpl implements RoomService {
         else {
             return roomDao.findRoomWithParameter(city);
         }
+    }
+
+    @Override
+    public void update(Room room) {
+        roomDao.update(room);
     }
 
 }

@@ -3,6 +3,7 @@ package com.spring.web.controller;
 import com.spring.database.domain.Reservation;
 import com.spring.database.domain.Room;
 import com.spring.database.domain.User;
+import com.spring.database.enums.ReservationStatus;
 import com.spring.service.impl.security.UserPrincipal;
 import com.spring.service.interfaces.ReservationService;
 import com.spring.service.interfaces.RoomService;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 @Controller
@@ -40,6 +44,8 @@ public class ReservationController {
         Room room = roomService.findById(id);
         UserPrincipal userPrincipal = (UserPrincipal) currentUser;
         User user = userPrincipal.getUser();
+
+        System.out.println("Arrival:" + arrivalDate + " Checkout: " + checkoutDate);
         reservationService.createReservation(room,user,arrivalDate,checkoutDate);
 
         return "redirect:/profile";
@@ -53,7 +59,19 @@ public class ReservationController {
     }
 
     @PostMapping (value = "/admin/reservations")
-    public String changeReservationStatus() {
-        return "admin-reservations";
+    public String changeReservationStatus(@RequestParam("reservationId") String[] reservationsId,
+                                          @RequestParam("status") String[] statusArray) {
+        Arrays.stream(reservationsId).forEach(System.out::println);
+
+        for (int i = 0; i < reservationsId.length; i++) {
+                Long reservationId = Long.valueOf(reservationsId[i]);
+                ReservationStatus reservationStatus = ReservationStatus
+                        .valueOf(statusArray[i].toUpperCase());
+            Reservation found = reservationService.findById(reservationId);
+            found.setStatus(reservationStatus);
+            reservationService.update(found);
+        }
+
+        return "redirect:/admin/reservations";
     }
 }
