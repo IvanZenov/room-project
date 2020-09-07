@@ -1,4 +1,7 @@
 package com.spring.database.dao.interfaces;
 
-public interface PaymentDao {
+import com.spring.database.dao.common.BaseDao;
+import com.spring.database.domain.Payment;
+
+public interface PaymentDao extends BaseDao<Payment> {
 }
